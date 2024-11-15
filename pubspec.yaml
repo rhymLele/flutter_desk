@@ -19,6 +19,12 @@ dependencies:
   path_provider: ^2.1.5
   image_picker: ^1.1.2
   flutter_launcher_icons: ^0.14.1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+  localstore: ^1.4.0
+  syncfusion_flutter_calendar: ^27.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -34,6 +40,10 @@ flutter:
      - assets/
      - assets/images/
      - assets/icons/
+
+
+
+  generate: true
 
 fonts:
   - family: Poppins

@@ -1,14 +1,16 @@
 
 import 'dart:async';
 import 'package:cent/pages/StudentScreen.dart';
+import 'package:cent/sources/event_app/event/event_view.dart';
 import 'package:cent/sources/listCv.dart';
 import 'package:cent/ui/main/main_page.dart';
 import 'package:cent/ui/onboading/onboading_page_view.dart';
 import 'package:cent/ui/splash/splash.dart';
 import 'package:cent/ui/welcome/welcome_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 Future<void> main() async {
   // runApp(const MyApp());
   // runApp(ChangeNotifierProvider(
@@ -26,13 +28,24 @@ class myApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: [
+        Locale('vi'),
+        Locale('en')
+      ],
+      locale:   Locale('vi'),
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true
       ),
-      home: ListCV(),
+      home: EventView(),
     );
   }
 }
