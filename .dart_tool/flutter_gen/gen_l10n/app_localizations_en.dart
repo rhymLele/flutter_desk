@@ -6,4 +6,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get appTitle => 'Event Manager';
+
+  @override
+  String get addEvent => 'Add Event';
+
+  @override
+  String get eventDetails => 'Detail Event';
 }

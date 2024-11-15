@@ -98,6 +98,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Event Manager'**
   String get appTitle;
+
+  /// No description provided for @addEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Event'**
+  String get addEvent;
+
+  /// No description provided for @eventDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Detail Event'**
+  String get eventDetails;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

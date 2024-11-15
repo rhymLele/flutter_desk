@@ -6,4 +6,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get appTitle => 'Quản lí sự kiện';
+
+  @override
+  String get addEvent => 'Thêm sự kiện';
+
+  @override
+  String get eventDetails => 'Chi tiết sự kiện';
 }

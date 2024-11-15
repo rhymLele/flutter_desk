@@ -1,7 +1,7 @@
 import 'package:cent/sources/event_app/event/event_model.dart';
 import 'package:flutter/material.dart';
 import 'event_service.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class EventDetailView extends StatefulWidget {
   const EventDetailView({super.key, required this.event});
 
@@ -64,6 +64,12 @@ class _EventDetailViewState extends State<EventDetailView> {
   }
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final al=AppLocalizations.of(context)!;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.event.id==null?al.addEvent:al.eventDetails),
+      ),
+    );
   }
 }
