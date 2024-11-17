@@ -1,3 +1,4 @@
+import 'event_service.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import 'event_model.dart';
@@ -13,7 +14,7 @@ class EventView extends StatefulWidget {
 class _EventViewState extends State<EventView> {
   //danh sach su kien
   List<EventModel> items=[];
-
+  final eventService =EventService();
 
   final calendarController=CalendarController();
 
@@ -22,10 +23,14 @@ class _EventViewState extends State<EventView> {
     // TODO: implement initState
     super.initState();
     calendarController.view=CalendarView.day;
-    loadEvent();
+    loadEvents();
   }
   Future<void> loadEvents() async{
-    // final events=await eventService.get
+    final events=await eventService.getAllEvents();
+
+    setState(() {
+      items=events;
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,5 @@ class _EventViewState extends State<EventView> {
     );
   }
 
-  Future<void> loadEvent() async {
-    // final events=await
-  }
+
 }
