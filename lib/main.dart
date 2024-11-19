@@ -1,16 +1,13 @@
 
 import 'dart:async';
-import 'package:cent/pages/StudentScreen.dart';
 import 'package:cent/sources/event_app/event/event_view.dart';
-import 'package:cent/sources/listCv.dart';
-import 'package:cent/ui/main/main_page.dart';
-import 'package:cent/ui/onboading/onboading_page_view.dart';
 import 'package:cent/ui/splash/splash.dart';
-import 'package:cent/ui/welcome/welcome_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:device_preview/device_preview.dart';
 Future<void> main() async {
   // runApp(const MyApp());
   // runApp(ChangeNotifierProvider(
@@ -20,7 +17,10 @@ Future<void> main() async {
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]);
 
-  runApp(myApp());
+  runApp(DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => MyAppA(), // Wrap your app
+  ),);
 }
 
 class myApp extends StatelessWidget {
@@ -50,3 +50,15 @@ class myApp extends StatelessWidget {
   }
 }
 
+class MyAppA extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: const SplashScreen(),
+    );
+  }
+}

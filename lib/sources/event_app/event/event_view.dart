@@ -29,7 +29,7 @@ class _EventViewState extends State<EventView> {
     final events=await eventService.getAllEvents();
 
     setState(() {
-      items=events;
+      // items=events;
     });
   }
   @override
