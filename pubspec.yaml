@@ -22,7 +22,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
-
   localstore: ^1.4.0
   syncfusion_flutter_calendar: ^27.2.2
   device_preview: ^1.2.0
