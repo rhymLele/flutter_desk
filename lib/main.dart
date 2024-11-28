@@ -1,12 +1,6 @@
 
 import 'dart:async';
 import 'package:cent/gemini_cb/sceens/home_sceen.dart';
-import 'package:cent/gemini_cb/widgets/chat_bubble_widget.dart';
-import 'package:cent/gemini_cb/widgets/message_box_widget.dart';
-import 'package:cent/sources/codeSunday/cart/widgets.dart';
-import 'package:cent/sources/codeSunday/fe_e/homepage.dart';
-import 'package:cent/sources/codeSunday/fe_e/utils/theme.dart';
-import 'package:cent/ui/splash/splash.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,41 +16,7 @@ Future<void> main() async {
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context)=>MyAppA(),
+    builder: (context)=>HomeSceen(),
   ));
 }
-class MyAppA extends StatefulWidget {
-  const MyAppA({super.key});
-
-  @override
-  State<MyAppA> createState() => _MyAppAState();
-}
-
-class _MyAppAState extends State<MyAppA> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body:SafeArea(
-          child: Column(
-            children: [
-              Expanded(child:ListView(children: [
-                ChatBubble(
-                      message:
-                          'asssssssdasdas asssssssdasdas asssssssdasdas asssssssdasdas',
-                      isMine: true,
-                      photoUrl: 'assets/images/img_ava1.png')
-                ]), ),
-              MessageBox(onSendMessage: (value){
-                print('$value');
-              },)
-            ],
-          ),
-        ) ,
-      
-      ),
-    );
-  }
-}
-
 
