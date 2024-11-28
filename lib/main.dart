@@ -1,5 +1,7 @@
 
 import 'dart:async';
+import 'package:cent/gemini_cb/sceens/home_sceen.dart';
+import 'package:cent/gemini_cb/widgets/chat_bubble_widget.dart';
 import 'package:cent/sources/codeSunday/cart/widgets.dart';
 import 'package:cent/sources/codeSunday/fe_e/homepage.dart';
 import 'package:cent/sources/codeSunday/fe_e/utils/theme.dart';
@@ -22,52 +24,23 @@ Future<void> main() async {
     builder: (context)=>MyAppA(),
   ));
 }
-
-
 class MyAppA extends StatefulWidget {
+  const MyAppA({super.key});
+
   @override
   State<MyAppA> createState() => _MyAppAState();
-
 }
 
 class _MyAppAState extends State<MyAppA> {
-  AddToCartAnimationManager manager=AddToCartAnimationManager();
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    manager.dispose();
-  }
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body:SafeArea(
+        child: ChatBubble(message: 'Hello Girl', isMine: 2>1, photoUrl: 'assets/images/img_ava1.jpg'),
+      ) ,
 
-    return MaterialApp(
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      theme: ThemeData(
-        primaryColor: kColorPrimary,
-
-      ),
-      darkTheme: ThemeData.dark(),
-      home: Scaffold(
-        backgroundColor: Colors.indigo.shade200,
-        floatingActionButton: CartButton(),
-        body: Stack(children: [ProductList(manager: manager,),
-        ListenableBuilder(
-          listenable: manager.productSize,
-          builder: (context,_) {
-            return Container(width: manager.productSize.value.width,height: manager.productSize.value.height,color: Colors.indigo.shade400,);
-          }
-        )]),
-      ),
     );
   }
 }
-class AddToCartAnimationManager{
-  final productKeys=List.generate(20, (index)=>GlobalKey());
-  var productSize=ValueNotifier(Size(0, 0));
-  void dispose(){
-    productSize.dispose();
-  }
-}
+
+
