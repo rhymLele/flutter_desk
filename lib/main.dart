@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'package:cent/gemini_cb/sceens/home_sceen.dart';
 import 'package:cent/gemini_cb/widgets/chat_bubble_widget.dart';
+import 'package:cent/gemini_cb/widgets/message_box_widget.dart';
 import 'package:cent/sources/codeSunday/cart/widgets.dart';
 import 'package:cent/sources/codeSunday/fe_e/homepage.dart';
 import 'package:cent/sources/codeSunday/fe_e/utils/theme.dart';
@@ -34,11 +35,26 @@ class MyAppA extends StatefulWidget {
 class _MyAppAState extends State<MyAppA> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:SafeArea(
-        child: ChatBubble(message: 'Hello Girl', isMine: 2>1, photoUrl: 'assets/images/img_ava1.jpg'),
-      ) ,
-
+    return MaterialApp(
+      home: Scaffold(
+        body:SafeArea(
+          child: Column(
+            children: [
+              Expanded(child:ListView(children: [
+                ChatBubble(
+                      message:
+                          'asssssssdasdas asssssssdasdas asssssssdasdas asssssssdasdas',
+                      isMine: true,
+                      photoUrl: 'assets/images/img_ava1.png')
+                ]), ),
+              MessageBox(onSendMessage: (value){
+                print('$value');
+              },)
+            ],
+          ),
+        ) ,
+      
+      ),
     );
   }
 }
