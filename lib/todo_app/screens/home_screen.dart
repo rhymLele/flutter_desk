@@ -25,6 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
      _controller.clear();
    });
   }
+  void deleteFunction(int index)
+  {
+    setState(() {
+      todo.removeAt(index);
+    });
+  }
+  
   final TextEditingController _controller=TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -45,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     taskName: todo[index][0],
                     taskCompleted: todo[index][1],
                     onChanged: (value) => checkBoxChanged(index),
+                    deleteFunc: (context)=> deleteFunction(index),
                   );
                 }),
           ),
