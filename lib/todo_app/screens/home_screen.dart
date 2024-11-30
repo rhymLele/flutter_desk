@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
       print('a');
     });
   }
-   saveNewTask(){
+  void saveNewTask(){
    setState(() {
      todo.add([_controller.text,false]);
      _controller.clear();

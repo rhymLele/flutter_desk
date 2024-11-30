@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'package:cent/auth_fire/screens/login_screen.dart';
 import 'package:cent/todo_app/screens/home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false ,
-      home:  HomeScreen(),
+      home:  LoginScreen(),
     );
   }
 }
