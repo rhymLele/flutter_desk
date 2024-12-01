@@ -5,37 +5,47 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cent/auth_fire/widgets/textField_widget.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key, this.onTap});
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({super.key, this.onTap});
   final Function()? onTap;
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _registerScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _registerScreenState extends State<RegisterScreen> {
   final userNameController = TextEditingController();
 
   final passWordController = TextEditingController();
+  final confirmPwController = TextEditingController();
 
-  void signUserIn() async {
+
+  void signUserUp() async {
     try {
       showDialog(context: context, builder: (context){
         return Center(child:
-          CircularProgressIndicator(),);
+        CircularProgressIndicator(),);
       });
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: userNameController.text.trim(),
-        password: passWordController.text.trim(),
-      );
+      if(confirmPwController.text==passWordController.text){
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: userNameController.text.trim(),
+          password: passWordController.text.trim(),
+        );
+      }else{
+        showALert('Password!');
+      }
+
       Navigator.pop(context);
       print('User logged in successfully');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showALert('No user found for that email.');
+        Navigator.pop(context);
       } else if (e.code == 'wrong-password') {
         showALert('Wrong password provided for that user.');
+        Navigator.pop(context);
       } else {
-       showALert(e.toString());
+        showALert(e.toString());
+        Navigator.pop(context);
       }
     }
 
@@ -47,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Text(
-                    'Welcome back you\'re been missed',
+                    'Let\'s join us to create your world',
                     style: TextStyle(color: Colors.grey[700], fontSize: 16),
                   ),
                 ),
@@ -83,6 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: false),
                 TextFieldWidget(
                     controller: passWordController,
+                    hintText: 'Password',
+                    obscureText: true),
+                TextFieldWidget(
+                    controller: confirmPwController,
                     hintText: 'Password',
                     obscureText: true),
                 Padding(
@@ -98,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 ButtonWidget(
-                  onTap: signUserIn,
-                  text: 'Sign In',
+                  onTap: signUserUp,
+                  text: 'Sign Up',
                 )
                 //password textfield
                 ,
@@ -112,10 +127,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Expanded(
                           child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[400],
-                      )),
-                     const Padding(
+                            thickness: 0.5,
+                            color: Colors.grey[400],
+                          )),
+                      const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text('Or continue with'),
                       ),
@@ -142,11 +157,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('not a member?'),
+                    Text('Already has an account'),
                     SizedBox(width: 4,)
                     ,GestureDetector(
                         onTap: widget.onTap,
-                        child: Text('Register now',style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold),))
+                        child: Text('Log in now',style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold),))
                   ],
                 )
                 //forgot password
